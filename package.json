@@ -1,0 +1,27 @@
+{
+  "name": "django-blog-start",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mikorn/gulp-project.git",
+  "author": "mikorn <m.kornilov@webmikorn.ru>",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "concurrently": "^4.0.1",
+    "del": "^2.2.2",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-debug": "^3.2.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^2.1.2",
+    "imagemin-pngquant": "^5.1.0"
+  }
+}
