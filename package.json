@@ -23,5 +23,6 @@
     "gulp-sass": "^4.0.2",
     "gulp-uglify": "^2.1.2",
     "imagemin-pngquant": "^5.1.0"
-  }
+  },
+  "dependencies": {}
 }

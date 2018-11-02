@@ -16,12 +16,10 @@ const browserSync = require('browser-sync').create(),
 paths = {
     clean: {
         source: [
-            './src/*.html',
-            './src/libs',
+            './src/*.html'
         ],
         dist: [
-            './dist/assets',
-            './dist/libs'
+            './dist/assets'
         ]
     },
     watch: {
@@ -37,23 +35,6 @@ paths = {
         css: {
             src: './src/sass/custom.scss',
             dest: './src/assets/css'
-        },
-        libs: {
-            jquery: {
-                src: [
-                    './src/bower_components/jquery/dist/jquery.min.js',
-                    './src/bower_components/jquery/LICENSE.txt'
-                ],
-                dest: './src/libs/jquery'
-            },
-            materialize: {
-                src: [
-                    './src/bower_components/materialize/dist/css/materialize.min.css',
-                    './src/bower_components/materialize/dist/js/materialize.min.js',
-                    './src/bower_components/materialize/LICENSE'
-                ],
-                dest: './src/libs/materialize'
-            }
         }
     },
     img: {
@@ -72,10 +53,6 @@ paths = {
         js: {
             src: './src/assets/js/custom.js',
             dest: './dist/assets/js'
-        },
-        libs: {
-            src: './src/libs/**/*.*',
-            dest: './dist/libs'
         }
     }
 }
@@ -104,16 +81,6 @@ gulp.task('css', () => {
         .pipe(cleanCSS())
         .pipe(gulp.dest(paths.source.css.dest))
         .pipe(browserSync.stream())
-})
-
-gulp.task('jquery', () => {
-    return gulp.src(paths.source.libs.jquery.src)
-        .pipe(gulp.dest(paths.source.libs.jquery.dest))
-})
-
-gulp.task('materialize', () => {
-    return gulp.src(paths.source.libs.materialize.src)
-        .pipe(gulp.dest(paths.source.libs.materialize.dest))
 })
 
 gulp.task('cleanSrc', () => {
@@ -147,15 +114,8 @@ gulp.task('imgDist', () => {
         .pipe(gulp.dest(paths.img.dest))
 })
 
-gulp.task('libsDist', () => {
-    return gulp.src(paths.dist.libs.src)
-        .pipe(gulp.dest(paths.dist.libs.dest))
-})
-
 gulp.task('src', gulp.parallel('cleanSrc', 'html', 'css'))
 
-gulp.task('libs', gulp.parallel('jquery', 'materialize'))
+gulp.task('build', gulp.series('cleanDist', 'htmlDist', 'cssDist', 'jsDist', 'imgDist'))
 
-gulp.task('build', gulp.series('cleanDist', 'htmlDist', 'cssDist', 'jsDist', 'imgDist', 'libsDist'))
-
-gulp.task('default', gulp.series('src', 'libs', 'serve'))
+gulp.task('default', gulp.series('src', 'serve'))
